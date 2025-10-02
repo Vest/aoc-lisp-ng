@@ -25,4 +25,6 @@ jobs:
       - name: Install Rove
         run: ros install fukamachi/rove
       - name: Run tests
-        run: COVERAGE=1 rove aoc-lisp-ng.asd
+        run: |
+          PATH="~/.roswell/bin:$PATH"
+          COVERAGE=1 rove aoc-lisp-ng.asd
