@@ -17,5 +17,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Install Roswell
+        env:
+          LISP: ${{ matrix.lisp }}
+        run: |
+          curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
+      - name: Install Rove
+        run: ros install fukamachi/rove
       - name: Run tests
-        run: make test
+        run: |
+          PATH="~/.roswell/bin:$PATH"
+          COVERAGE=1 rove aoc-lisp-ng.asd
