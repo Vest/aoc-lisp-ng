@@ -4,6 +4,6 @@
   (:import-from :uiop #:run-program #:directory-files #:subdirectories)
   (:export #:download-input))
 
-(in-package #:aoc-lisp/downloader))
+(in-package #:aoc-lisp-ng/downloader)
 
 (defparameter *session-cookie* (u:read-file-line "session.txt"))
