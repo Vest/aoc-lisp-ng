@@ -2,7 +2,7 @@
   :version "0.0.1"
   :author "Vest"
   :license "MIT"
-  :depends-on (:dexador :str :alexandria :uiop)
+  :depends-on (:dexador :cl-cookie :str :alexandria :uiop)
   :components ((:module "src"
                 :components
                 ((:file "main"))))
