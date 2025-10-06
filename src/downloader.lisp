@@ -6,4 +6,7 @@
 
 (in-package #:aoc-lisp-ng/downloader)
 
-(defparameter *session-cookie* (u:read-file-line "session.txt"))
+(defparameter *session-cookie* (u:read-file-string "data/session.txt"))
+
+(defun download-input (day year)
+  year)
