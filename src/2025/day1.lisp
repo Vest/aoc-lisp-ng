@@ -19,8 +19,7 @@
 
 (defun show-answers-01(input)
   (let ((part-a (show-part-a input))
-;        (part-b (show-part-b))
-        (part-b 0))
+        (part-b (show-part-b input)))
     (print (format t "Day01: ~a, ~a~%" part-a part-b))))
 
 
@@ -33,13 +32,33 @@
       (let ((cmd (parse-command line)))
         (cond ((eq #\L (command-dir cmd)) (decf current-value (command-steps cmd)))
               ((eq #\R (command-dir cmd)) (incf current-value (command-steps cmd)))
-              (t (print "none")))
-        )
+              (t (print "none"))))
       (setf current-value (rem current-value 100))
-      (if (= 0 current-value) (incf answer))
-    )
+      (if (= 0 current-value) (incf answer)))
 
-   answer    
-))
+   answer))
+
+(defun show-part-b (input)
+  (let* ((lines (s:lines input))
+         (previous-value 50)
+         (current-value 50)
+         (answer 0))
+
+    (dolist (line lines)
+      (let ((cmd (parse-command line)))
+        (cond ((eq #\L (command-dir cmd)) (decf current-value (command-steps cmd)))
+              ((eq #\R (command-dir cmd)) (incf current-value (command-steps cmd)))
+              (t (print "none"))))
+      (if (and (not (eq (signum previous-value) (signum current-value)))
+               (not (eq 0 (signum previous-value))))
+          (incf answer))
+      (let* ((times (floor (abs current-value) 100)))
+        (incf answer times))
+      (setf current-value (rem current-value 100))
+      (setf previous-value current-value))
+
+   answer))
+
 
 ; (show-part-a (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
+; (show-part-b (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
