@@ -8,7 +8,7 @@
 
 (deftest test-target-1
   (testing "should (= 1 1) to be true"
-    (ok (= 1 1))))
+    (ok (= 1 2))))
 
 ;; Run tests automatically, when the file is loaded
 (rove:run-suite *package*)
