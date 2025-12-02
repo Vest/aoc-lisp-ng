@@ -3,7 +3,7 @@
   (:local-nicknames (#:d #:aoc-lisp-ng/downloader)
                     (#:s :str))
   (:import-from #:aoc-lisp-ng/downloader #:download-input-as-string)
-  (:export #:show-answers-01))
+  (:export #:show-answers-01 #:show-answers-02))
 
 (in-package #:aoc-lisp-ng/2025)
 
@@ -17,10 +17,10 @@
     (make-command :dir dir :steps steps)))
 
 
-(defun show-answers-01(input)
+(defun show-answers-01 (input)
   (let ((part-a (show-part-a input))
         (part-b (show-part-b input)))
-    (print (format t "Day01: ~a, ~a~%" part-a part-b))))
+    (print (format t "Day 1: ~a, ~a~%" part-a part-b))))
 
 
 (defun show-part-a (input)

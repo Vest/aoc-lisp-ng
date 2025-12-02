@@ -12,7 +12,10 @@
                   :serial t
                   :depends-on ("downloader")
                   :components
-                  ((:file "day1"))))))
+                  ((:file "package")
+                   (:file "day1" :depends-on ("package"))
+                   (:file "day2" :depends-on ("package"))
+                  )))))
   :description "aoc-lisp-ng is an attempt to solve at least few days during AoC 2018"
   :in-order-to ((test-op (test-op :aoc-lisp-ng/tests))))
 
