@@ -1,10 +1,3 @@
-(defpackage #:aoc-lisp-ng/2025
-  (:use :cl)
-  (:local-nicknames (#:d #:aoc-lisp-ng/downloader)
-                    (#:s :str))
-  (:import-from #:aoc-lisp-ng/downloader #:download-input-as-string)
-  (:export #:show-answers-01 #:show-answers-02))
-
 (in-package #:aoc-lisp-ng/2025)
 
 (defstruct command
@@ -18,12 +11,12 @@
 
 
 (defun show-answers-01 (input)
-  (let ((part-a (show-part-a input))
-        (part-b (show-part-b input)))
+  (let ((part-a (show-part-01-a input))
+        (part-b (show-part-01-b input)))
     (print (format t "Day 1: ~a, ~a~%" part-a part-b))))
 
 
-(defun show-part-a (input)
+(defun show-part-01-a (input)
   (let* ((lines (s:lines input))
          (current-value 50)
          (answer 0))
@@ -38,7 +31,7 @@
 
    answer))
 
-(defun show-part-b (input)
+(defun show-part-01-b (input)
   (let* ((lines (s:lines input))
          (previous-value 50)
          (current-value 50)
@@ -60,5 +53,5 @@
    answer))
 
 
-; (show-part-a (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
-; (show-part-b (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
+; (show-part-01-a (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
+; (show-part-01-b (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))

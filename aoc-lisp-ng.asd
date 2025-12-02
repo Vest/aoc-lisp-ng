@@ -6,8 +6,7 @@
   :components ((:module "src"
                 :serial t
                 :components
-                ((:file "main")
-                 (:file "downloader")
+                ((:file "downloader")
                  (:module "2025"
                   :serial t
                   :depends-on ("downloader")
@@ -15,7 +14,8 @@
                   ((:file "package")
                    (:file "day1" :depends-on ("package"))
                    (:file "day2" :depends-on ("package"))
-                  )))))
+                  ))
+                 (:file "main" :depends-on ("downloader" "2025")))))
   :description "aoc-lisp-ng is an attempt to solve at least few days during AoC 2018"
   :in-order-to ((test-op (test-op :aoc-lisp-ng/tests))))
 
