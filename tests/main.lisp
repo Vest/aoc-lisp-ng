@@ -1,6 +1,6 @@
 (defpackage aoc-lisp-ng/tests/main
   (:use :cl
-        :aoc-lisp-ng
+        #:aoc-lisp-ng
         :rove))
 (in-package :aoc-lisp-ng/tests/main)
 
@@ -8,7 +8,7 @@
 
 (deftest test-target-1
   (testing "should (= 1 1) to be true"
-    (ok (= 1 2))))
+    (ok (= 1 1))))
 
 ;; Run tests automatically, when the file is loaded
 (rove:run-suite *package*)
