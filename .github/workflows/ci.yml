@@ -21,7 +21,8 @@ jobs:
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | bash
+          curl -sOL `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
+          dpkg -i roswell.deb
       - name: Install Rove
         run: ros install rove
       - name: Run tests
