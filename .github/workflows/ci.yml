@@ -7,16 +7,13 @@ on:
     - cron: '0 15 * * *'
 
 jobs:
-  test_linux:
+  test_mac:
     name: ${{ matrix.lisp }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         lisp: [sbcl-bin]
-        os: [ubuntu-latest]
-    # Allow failures due to Roswell compatibility issues with recent Lisp implementations
-    # See: https://github.com/fukamachi/qlot/issues/333
-    continue-on-error: true
+        os: [mac-latest]
 
     steps:
       - uses: actions/checkout@v1
@@ -24,9 +21,7 @@ jobs:
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          curl -sL -o roswell.deb `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
-      - name: Install Roswell
-        run: sudo dpkg -i roswell.deb
+          brew install roswell
       - name: Install Rove
         run: ros install rove
       - name: Run tests
