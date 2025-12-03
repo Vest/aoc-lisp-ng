@@ -7,21 +7,27 @@ on:
     - cron: '0 15 * * *'
 
 jobs:
-  test_mac:
+  test_linux:
     name: ${{ matrix.lisp }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         lisp: [sbcl-bin]
-        os: [mac-latest]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v1
+      - uses: melusina-org/setup-quicklisp@v1
+        id: 'quicklisp'
+        with:
+          implementation: 'sbcl'
       - name: Download Roswell
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          brew install roswell
+          curl -sL -o roswell.deb `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
+      - name: Install Roswell
+        run: sudo dpkg -i roswell.deb
       - name: Install Rove
         run: ros install rove
       - name: Run tests
