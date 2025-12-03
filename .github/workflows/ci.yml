@@ -21,7 +21,7 @@ jobs:
         env:
           LISP: ${{ matrix.lisp }}
         run: |
-          curl -sL -roswell.deb `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
+          curl -sL -o roswell.deb `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
       - name: Install Roswell
         run: sudo dpkg -i roswell.deb
       - name: Install Rove
