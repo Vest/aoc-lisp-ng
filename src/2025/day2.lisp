@@ -30,6 +30,7 @@
                     (floor num tens)
                   (= f r)))))))
 
+
 (defun generate-list (rng)
   (loop for n from (range-start rng) to (range-end rng) collect n))
 
@@ -41,7 +42,7 @@
   (let* ((str (write-to-string num)))
     (ppcre:scan *scanner* str)))
 
-(defun filter-invalidt-nums (rng)
+(defun filter-invalid-nums (rng)
   (let ((l (generate-list rng)))
     (remove-if-not #'is-num-invalid l)))
 
@@ -52,7 +53,7 @@
 
 (defun show-part-02-b (input)
   (let* ((ranges (parse-input input))
-         (nums (mapcar #'(lambda (rng) (apply #'+ (filter-invalidt-nums rng))) ranges)))
+         (nums (mapcar #'(lambda (rng) (apply #'+ (filter-invalid-nums rng))) ranges)))
     (apply #'+ nums)))
 
 
