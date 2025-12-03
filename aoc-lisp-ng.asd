@@ -27,6 +27,9 @@
                :rove)
   :components ((:module "tests"
                 :components
-                ((:file "main"))))
+                ((:file "main")
+                 (:module "2025"
+                  :components
+                  ((:file "day2"))))))
   :description "Test system for aoc-lisp-ng"
   :perform (test-op (op c) (symbol-call :rove :run c)))
