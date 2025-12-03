@@ -14,20 +14,13 @@ jobs:
       matrix:
         lisp: [sbcl-bin]
         os: [ubuntu-latest]
+    
+    env:
+      LISP: ${{ matrix.lisp }}
 
     steps:
       - uses: actions/checkout@v1
-      - uses: melusina-org/setup-quicklisp@v1
-        id: 'quicklisp'
-        with:
-          implementation: 'sbcl'
-      - name: Download Roswell
-        env:
-          LISP: ${{ matrix.lisp }}
-        run: |
-          curl -sL -o roswell.deb `curl -s https://api.github.com/repos/roswell/roswell/releases/latest | jq -r '.assets | .[] | select(.name|test("\\\.deb$")) | .browser_download_url'`
-      - name: Install Roswell
-        run: sudo dpkg -i roswell.deb
+      - uses: 40ants/setup-lisp@v4
       - name: Install Rove
         run: ros install rove
       - name: Run tests
