@@ -14,6 +14,9 @@ jobs:
       matrix:
         lisp: [sbcl-bin]
         os: [ubuntu-latest]
+    # Allow failures due to Roswell compatibility issues with recent Lisp implementations
+    # See: https://github.com/fukamachi/qlot/issues/333
+    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v1
