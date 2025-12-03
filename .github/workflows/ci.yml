@@ -10,7 +10,7 @@ jobs:
   test_linux:
     name: ${{ matrix.lisp }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    continue-on-error: true
+#   continue-on-error: true
     strategy:
       matrix:
         lisp: [sbcl-bin]
@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Install Roswell (master)
+      - name: Install Roswell
         run: curl -L https://raw.githubusercontent.com/roswell/roswell/master/scripts/install-for-ci.sh | sh
       - name: Install Rove
         run: ros install rove
