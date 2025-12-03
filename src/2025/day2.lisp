@@ -1,5 +1,7 @@
 (in-package #:aoc-lisp-ng/2025)
 
+(defparameter *scanner* (ppcre:create-scanner "^(\\d+)\\1+$"))
+
 (defun show-answers-02 (input)
   (let ((part-a (show-part-02-a input))
         (part-b (show-part-02-b input)))
@@ -35,6 +37,13 @@
   (let ((l (generate-list rng)))
     (remove-if-not #'is-num-split l)))
 
+(defun is-num-invalid (num)
+  (let* ((str (write-to-string num)))
+    (ppcre:scan *scanner* str)))
+
+(defun filter-invalidt-nums (rng)
+  (let ((l (generate-list rng)))
+    (remove-if-not #'is-num-invalid l)))
 
 (defun show-part-02-a (input)
   (let* ((ranges (parse-input input))
@@ -42,11 +51,14 @@
     (apply #'+ nums)))
 
 (defun show-part-02-b (input)
-  input)
+  (let* ((ranges (parse-input input))
+         (nums (mapcar #'(lambda (rng) (apply #'+ (filter-invalidt-nums rng))) ranges)))
+    (apply #'+ nums)))
 
 
 ; (show-part-02-a "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
-; (show-part-02-b (s:unlines '("L68" "L30" "R48" "L5" "R60" "L55" "L1" "L99" "R14" "L82")))
+; (show-part-02-b "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124")
+
 
 ;(parse-range "1-4")
 ;(parse-input "1-4,5-7")
@@ -54,3 +66,4 @@
 ;(generate-list (parse-range "1-4"))
 ;(filter-non-split-nums (parse-range "11-22"))
 ;(count-split-nums (parse-range "38593856-38593862"))
+;(is-num-invalid 38593859)
