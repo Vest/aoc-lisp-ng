@@ -14,6 +14,7 @@
                   ((:file "package")
                    (:file "day1" :depends-on ("package"))
                    (:file "day2" :depends-on ("package"))
+                   (:file "day3" :depends-on ("package"))
                   ))
                  (:file "main" :depends-on ("downloader" "2025")))))
   :description "aoc-lisp-ng is an attempt to solve at least few days during AoC 2018"
@@ -30,6 +31,7 @@
                 ((:file "main")
                  (:module "2025"
                   :components
-                  ((:file "day2"))))))
+                  ((:file "day2")
+                   (:file "day3"))))))
   :description "Test system for aoc-lisp-ng"
   :perform (test-op (op c) (symbol-call :rove :run c)))
