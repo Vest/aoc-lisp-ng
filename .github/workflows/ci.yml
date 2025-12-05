@@ -13,7 +13,7 @@ jobs:
 #   continue-on-error: true
     strategy:
       matrix:
-        lisp: [sbcl-bin]
+        lisp: [sbcl-bin/2.5.10]
         os: [ubuntu-latest]
     
     env:
