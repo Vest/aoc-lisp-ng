@@ -8,4 +8,4 @@
     (let ((input (aoc-lisp-ng/downloader:download-input 2025 4)))
       (show-answers-04 input)))
 
-; (main)
+(main)
