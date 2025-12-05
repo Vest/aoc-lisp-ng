@@ -3,7 +3,8 @@
   (:local-nicknames (#:u :uiop)
                     (#:dex :dexador))
   (:import-from :uiop #:run-program #:directory-files #:subdirectories)
-  (:export #:download-input-as-string))
+  (:export #:download-input-as-string
+           #:download-input))
 
 (in-package #:aoc-lisp-ng/downloader)
 
