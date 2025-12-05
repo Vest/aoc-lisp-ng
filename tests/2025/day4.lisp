@@ -38,6 +38,10 @@
   (testing "sample answer A"
     (ok (= 13 (aoc-lisp-ng/2025::show-part-04-a *day4-input*)))))
 
+(deftest test-day4-b
+  (testing "sample answer B"
+    (ok (= 43 (aoc-lisp-ng/2025::show-part-04-b *day4-input*)))))
+
 (teardown
   (setf *day4-field* nil))
 

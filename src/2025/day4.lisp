@@ -19,7 +19,20 @@
     count))
 
 (defun show-part-04-b (input)
-  input)
+  (let* ((field (make-field input))
+         (rank (array-dimension field 0))
+         (new-count -1)
+         (count 0))
+    (loop while (/= new-count 0) do
+      (setf new-count 0)
+      (loop for row from 0 below rank do 
+        (loop for col from 0 below rank
+              when (and (eq #\@ (read-field field row col))
+                        (< (count-field-neighbors field row col) 4))
+                do (incf new-count)))
+      (clean-field field)
+      (incf count new-count))
+    count))
 
 (defun make-field (input)
   (let* ((lines (str:lines input))
@@ -45,4 +58,21 @@
                            (read-field field (+ row 1) col)
                            (read-field field (+ row 1) (+ col 1))
                            )))
-    (count-if (lambda (x) (eq x #\@)) neighbors)))
+    (count-if (lambda (x) (or (eq x #\@) (eq x #\x))) neighbors)))
+
+(defun clean-field (field)
+  (let* ((rank (array-dimension field 0)))
+; mark all cells that must be cleaned
+    (loop for row from 0 below rank do
+      (loop for col from 0 below rank
+             when (and (eq #\@ (read-field field row col))
+                       (< (count-field-neighbors field row col) 4))
+               do (setf (aref field row col)
+                        #\x)))
+; cleaning the cells
+    (loop for row from 0 below rank do
+      (loop for col from 0 below rank
+             when (eq #\x (read-field field row col))                  
+               do (setf (aref field row col)
+                        #\.)))
+    field))
