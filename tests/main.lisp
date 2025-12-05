@@ -1,6 +1,5 @@
 (defpackage aoc-lisp-ng/tests/main
   (:use :cl
-        #:aoc-lisp-ng
         :rove))
 (in-package :aoc-lisp-ng/tests/main)
 

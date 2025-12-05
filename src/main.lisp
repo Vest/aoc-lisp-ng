@@ -1,6 +1,7 @@
 (defpackage #:aoc-lisp-ng
   (:use #:cl #:aoc-lisp-ng/2025)
-  (:import-from #:aoc-lisp-ng/downloader #:download-input))
+  (:import-from #:aoc-lisp-ng/downloader #:download-input)
+  (:export #:main))
 (in-package #:aoc-lisp-ng)
 
 ;; blah blah blah.
